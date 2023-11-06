@@ -1,4 +1,4 @@
-
+/** Question A: **/
 /** 
 Instead of deleting the record, we can set the status of the row to be inactive. 
 
@@ -23,3 +23,24 @@ Update Customer Set RowStatus=0 Where CustID=@custid
 End
 
 
+/** Question B **/
+/**
+Write a DDL Trigger that allows and tables columns to be added but prevents tables and columns from being dropped.
+**/
+
+-- prevent any accidental deletion of tables
+CREATE OR ALTER TRIGGER [JustWannaBeSafe]   
+ON DATABASE   
+FOR DROP_TABLE
+AS   
+PRINT 'You must disable Trigger [JustWannaBeSafe] to drop tables!'   
+ROLLBACK; 
+
+-- Triggers can be disabled, enabled back or dropped 
+-- DISABLE TRIGGER <trigger name>
+-- ON <table name>
+
+-- ENABLE TRIGGER <trigger name>
+-- ON <table name>
+
+-- DROP TRIGGER <trigger name>
